@@ -54,8 +54,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     ui.set_shortcut_rows(make_page_model(0));
     ui.set_show_add_modal(false);
     let ui_handle = Rc::new(ui.as_weak());
-
-    // Next page
     {
         let current_page = current_page.clone();
         let make_page_model = make_page_model.clone();
@@ -74,7 +72,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         });
     }
 
-    // Previous page
     {
         let current_page = current_page.clone();
         let make_page_model = make_page_model.clone();
@@ -91,7 +88,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         });
     }
 
-    // Add shortcut
     {
         let store_rc = store_rc.clone();
         let all_shortcuts_model = all_shortcuts_model.clone();
@@ -139,7 +135,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         });
     }
 
-    // Run command
     ui.on_run(move |command| {
         let command_str = command.to_string();
         let _ = std::process::Command::new("sh")
